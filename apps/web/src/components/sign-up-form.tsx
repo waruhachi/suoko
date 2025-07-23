@@ -1,7 +1,7 @@
 import { useForm } from "@tanstack/react-form";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import z from "zod";
+import { email, minLength, object, pipe, string } from "valibot";
 
 import { authClient } from "@/lib/auth-client";
 
@@ -43,12 +43,16 @@ export default function SignUpForm({
 			);
 		},
 		validators: {
-			onSubmit: z.object({
-				name: z.string().min(2, "Name must be at least 2 characters"),
-				email: z.email("Invalid email address"),
-				password: z
-					.string()
-					.min(8, "Password must be at least 8 characters"),
+			onSubmit: object({
+				name: pipe(
+					string(),
+					minLength(2, "Name must be at least 2 characters")
+				),
+				email: pipe(string(), email("Invalid email address")),
+				password: pipe(
+					string(),
+					minLength(8, "Password must be at least 8 characters")
+				),
 			}),
 		},
 	});
