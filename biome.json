@@ -1,5 +1,6 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"extends": ["ultracite"],
 	"vcs": {
 		"enabled": false,
 		"clientKind": "git",
@@ -25,9 +26,38 @@
 	},
 	"formatter": {
 		"enabled": true,
-		"indentStyle": "tab"
+		"indentStyle": "tab",
+		"indentWidth": 4
 	},
-	"assist": { "actions": { "source": { "organizeImports": "on" } } },
+	"assist": {
+		"actions": {
+			"source": {
+				"useSortedAttributes": "on",
+				"organizeImports": {
+					"level": "on",
+					"options": {
+						"groups": [
+							{
+								"type": true
+							},
+							":BLANK_LINE:",
+							":PACKAGE:",
+							":BLANK_LINE:",
+							":BLANK_LINE:",
+							":PACKAGE_WITH_PROTOCOL:",
+							":ALIAS:",
+							":BLANK_LINE:",
+							":PATH:",
+							":BLANK_LINE:",
+							":URL:",
+							":BLANK_LINE:",
+							"**"
+						]
+					}
+				}
+			}
+		}
+	},
 	"linter": {
 		"enabled": true,
 		"rules": {
@@ -60,7 +90,20 @@
 	},
 	"javascript": {
 		"formatter": {
-			"quoteStyle": "double"
+			"quoteStyle": "double",
+			"indentStyle": "tab",
+			"indentWidth": 4
+		}
+	},
+	"json": {
+		"formatter": {
+			"trailingCommas": "none",
+			"indentStyle": "tab",
+			"indentWidth": 4
+		},
+		"parser": {
+			"allowComments": true,
+			"allowTrailingCommas": true
 		}
 	}
 }
