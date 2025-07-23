@@ -1,2 +1,6 @@
-node_modules
+# misc
 .turbo
+.DS_Store
+
+# Dependencies
+node_modules
