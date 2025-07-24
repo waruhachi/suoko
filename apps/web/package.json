@@ -10,6 +10,7 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@daveyplate/better-auth-ui": "^2.1.0",
 		"@t3-oss/env-nextjs": "^0.13.8",
 		"@tanstack/react-form": "^1.14.2",
 		"@tanstack/react-query": "^5.83.0",
