@@ -1,6 +1,8 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
+import { env as serverEnv } from "@/env/server";
+
 import { db } from "../db";
 // biome-ignore lint/performance/noNamespaceImport: <database schema>
 import * as schema from "../db/schema/auth";
@@ -11,10 +13,10 @@ export const auth = betterAuth({
 
 		schema,
 	}),
-	trustedOrigins: [process.env.CORS_ORIGIN || ""],
+	trustedOrigins: [serverEnv.CORS_ORIGIN || ""],
 	emailAndPassword: {
 		enabled: true,
 	},
-	secret: process.env.BETTER_AUTH_SECRET,
-	baseURL: process.env.BETTER_AUTH_URL,
+	secret: serverEnv.BETTER_AUTH_SECRET,
+	baseURL: serverEnv.BETTER_AUTH_URL,
 });
